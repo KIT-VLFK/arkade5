@@ -22,6 +22,9 @@ namespace Arkivverket.Arkade.Core.Tests.Identify
             string n3DirectoryPath = Path.Combine("TestData", "noark3");
             string n5DirectoryPath = Path.Combine("TestData", "Noark5", "Noark5Archive");
             string fagsystemDirectoryPath = Path.Combine("TestData", "fagsystem", "autodetect");
+            string invalidAddmlDirectoryPath = Path.Combine("TestData", "TypeUndeterminableAddml", "InValidAddml");
+            string unserializableAddmlDirectoryPath = Path.Combine("TestData", "TypeUndeterminableAddml", "UnserializableAddml");
+            string unDeterminableValidAddmlDirectoryPath = Path.Combine("TestData", "TypeUndeterminableAddml", "ValidAddml");
 
             ArchiveType? n3ArchiveType = _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(n3DirectoryPath);
 
@@ -41,6 +44,19 @@ namespace Arkivverket.Arkade.Core.Tests.Identify
             fagsystemArchiveType.Should().NotBe(ArchiveType.Noark3);
             fagsystemArchiveType.Should().NotBe(ArchiveType.Noark5);
 
+            // In cases where the archive type is undeterminable, null should be the result (not an exception thrown): 
+            
+            ArchiveType? invalidAddmlArchiveType =
+                _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(invalidAddmlDirectoryPath);
+            invalidAddmlArchiveType.Should().BeNull();
+
+            ArchiveType? unserializableAddmlArchiveType =
+                _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(unserializableAddmlDirectoryPath);
+            unserializableAddmlArchiveType.Should().BeNull();
+
+            ArchiveType? undeterminableValidAddmlArchiveType =
+                _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(unDeterminableValidAddmlDirectoryPath);
+            undeterminableValidAddmlArchiveType.Should().BeNull();
         }
 
         [Fact()]
