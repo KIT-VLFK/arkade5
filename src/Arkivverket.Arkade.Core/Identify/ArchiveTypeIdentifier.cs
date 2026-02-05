@@ -44,9 +44,9 @@ namespace Arkivverket.Arkade.Core.Identify
                 if (TypeOfChosenArchiveDirectoryIsNoark5(addml))
                     return ArchiveType.Noark5;
             }
-            catch(ArkadeException arkadeException)
+            catch(Exception exception)
             {
-                Log.Error("Arkade could not automatically identify the type of the chosen archive:\n" + arkadeException.Message);
+                Log.Error("Arkade could not automatically identify the type of the chosen archive:\n" + exception.Message);
             }
             
             return null;
