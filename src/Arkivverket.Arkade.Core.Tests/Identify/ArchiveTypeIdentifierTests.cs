@@ -23,6 +23,9 @@ namespace Arkivverket.Arkade.Core.Tests.Identify
             _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(
                 Path.Combine("TestData", "fagsystem", "autodetect")).Should().Be(ArchiveType.Fagsystem);
 
+            _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(
+                Path.Combine("TestData", "Siard", "siard2", "dbPtk", "internal")).Should().Be(ArchiveType.Siard);
+
             // In cases where the archive type is undeterminable, null should be the result (not an exception thrown): 
 
             _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveDirectory(
@@ -48,6 +51,9 @@ namespace Arkivverket.Arkade.Core.Tests.Identify
 
             _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveFile(
                 Path.Combine(tarTestDataPath, "fagsystem-eksempel", "fs-guid.tar")).Should().Be(ArchiveType.Fagsystem);
+            
+            _archiveTypeIdentifier.IdentifyTypeOfChosenArchiveFile(
+                Path.Combine("TestData", "Siard", "dbptk_produced.siard")).Should().Be(ArchiveType.Siard);
         }
     }
 }
