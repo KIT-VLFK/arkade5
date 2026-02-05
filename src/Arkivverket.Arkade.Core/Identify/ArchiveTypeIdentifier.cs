@@ -132,8 +132,8 @@ namespace Arkivverket.Arkade.Core.Identify
 
         private static bool TypeOfChosenArchiveDirectoryIsNoark5(addml addml)
         {
-            string archiveExtractionType = addml.dataset[0].dataObjects?.dataObject[0].properties
-                .FirstOrDefault(p => p.name.Equals("info"))?.properties
+            string archiveExtractionType = addml.dataset[0].dataObjects?.dataObject[0].properties?
+                .FirstOrDefault(p => p.name.Equals("info"))?.properties?
                 .FirstOrDefault(p => p.name.Equals("type"))?.value;
 
             return archiveExtractionType != null &&
