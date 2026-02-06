@@ -195,6 +195,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SiardMessages.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\TemporaryMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TemporaryMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -271,6 +276,10 @@
     <EmbeddedResource Update="Resources\SiardMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiardMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\TemporaryMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemporaryMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
