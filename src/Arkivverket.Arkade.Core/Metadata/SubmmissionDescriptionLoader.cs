@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Arkivverket.Arkade.Core.Base;
 using Arkivverket.Arkade.Core.ExternalModels.SubmissionDescription;
-using Arkivverket.Arkade.Core.Util;
 
 namespace Arkivverket.Arkade.Core.Metadata
 {
     public static class SubmissionDescriptionLoader
     {
-        public static ArchiveMetadata Load(string diasMetsFile)
+        public static ArchiveMetadata Load(mets submissionDescription)
         {
-            var mets = SerializeUtil.DeserializeFromFile<mets>(diasMetsFile);
-
             var archiveMetadata = new ArchiveMetadata();
 
-            LoadMetsElementAttributes(archiveMetadata, mets);
+            LoadMetsElementAttributes(archiveMetadata, submissionDescription);
 
-            if (mets.metsHdr != null)
-                LoadMetsHdr(archiveMetadata, mets.metsHdr);
+            if (submissionDescription.metsHdr != null)
+                LoadMetsHdr(archiveMetadata, submissionDescription.metsHdr);
 
             MetadataLoader.HandleLabelPlaceholder(archiveMetadata);
 

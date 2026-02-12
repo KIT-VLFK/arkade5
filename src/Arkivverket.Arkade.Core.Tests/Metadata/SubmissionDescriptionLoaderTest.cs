@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.IO;
 using Arkivverket.Arkade.Core.Base;
 using Arkivverket.Arkade.Core.ExternalModels.SubmissionDescription;
 using Arkivverket.Arkade.Core.Metadata;
+using Arkivverket.Arkade.Core.Util;
 using FluentAssertions;
 using Xunit;
 
@@ -13,11 +14,13 @@ namespace Arkivverket.Arkade.Core.Tests.Metadata
         [Fact]
         public void DiasMetsIsSuccessfullyLoadedIntoArchiveMetadataObject()
         {
-            string diasMetsFile = Path.Combine(
+            string submissionDescriptionFile = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory, "TestData", "Metadata", "SubmissionDescriptionLoader", "submissionDescription.xml"
             );
 
-            ArchiveMetadata archiveMetadata = SubmissionDescriptionLoader.Load(diasMetsFile);
+            var submissionDescription = SerializeUtil.DeserializeFromFile<mets>(submissionDescriptionFile);
+
+            ArchiveMetadata archiveMetadata = SubmissionDescriptionLoader.Load(submissionDescription);
 
             archiveMetadata.Label.Should().Be("Some system name (2017 - 2020)");
 
